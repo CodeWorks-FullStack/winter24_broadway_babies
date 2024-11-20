@@ -11,3 +11,10 @@ export const ShowSchema = new Schema(
     toJSON: { virtuals: true }
   }
 )
+
+ShowSchema.virtual('animal', {
+  localField: 'animalId',
+  ref: 'Animal',
+  foreignField: '_id',
+  justOne: true
+})
