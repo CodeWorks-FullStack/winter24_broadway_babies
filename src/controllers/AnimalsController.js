@@ -1,4 +1,5 @@
 import { animalsService } from "../services/AnimalsService.js";
+import { showsService } from "../services/ShowsService.js";
 import BaseController from "../utils/BaseController.js";
 
 export class AnimalsController extends BaseController {
@@ -7,6 +8,7 @@ export class AnimalsController extends BaseController {
     this.router
       .get('', this.getAllAnimals)
       .put('/:animalId', this.updateAnimal)
+      .get('/:animalId/shows', this.getShowsByAnimalId)
   }
 
   /**
@@ -36,6 +38,22 @@ export class AnimalsController extends BaseController {
       const animalData = request.body
       const updatedAnimal = await animalsService.updateAnimal(animalId, animalData)
       response.send(updatedAnimal)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+  * Gets all shows for an animal using id from request parameters
+  * @param {import("express").Request} request
+  * @param {import("express").Response} response
+  * @param {import("express").NextFunction} next
+  */
+  async getShowsByAnimalId(request, response, next) {
+    try {
+      const animalId = request.params.animalId
+      const shows = await showsService.getShowsByAnimalId(animalId)
+      response.send(shows)
     } catch (error) {
       next(error)
     }

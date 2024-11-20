@@ -38,4 +38,5 @@ export class ShowsController extends BaseController {
       next(error)
     }
   }
+
 }
