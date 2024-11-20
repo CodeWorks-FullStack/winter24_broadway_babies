@@ -18,3 +18,10 @@ ShowSchema.virtual('animal', {
   foreignField: '_id',
   justOne: true
 })
+
+ShowSchema.virtual('handler', {
+  localField: 'handlerId',
+  ref: 'Account',
+  foreignField: '_id',
+  justOne: true
+})
