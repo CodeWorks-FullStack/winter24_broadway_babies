@@ -7,6 +7,7 @@ export const AnimalSchema = new Schema(
     talent: { type: String, minLength: 1, maxLength: 100, required: true },
   },
   {
-    timestamps: true
+    timestamps: true,
+    toJSON: { virtuals: true }
   }
 )
